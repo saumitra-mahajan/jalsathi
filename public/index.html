@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groundwater Quick Mode</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">JalSathi</p>
+        <h1>Groundwater Insights</h1>
+        <p class="subtitle">
+          Explore state, district, and block level groundwater information.
+        </p>
+      </div>
+      <div class="mode-actions">
+        <button id="complex-trigger" type="button" class="ghost">Complex Query</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <section class="panel chat-panel">
+        <div class="panel-header">
+          <h2>Chat Mode</h2>
+          <span class="tag">Conversational</span>
+        </div>
+        <div class="chat-window" id="chat-window" aria-live="polite"></div>
+        <div class="chat-actions">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+            autocomplete="off"
+            aria-label="Chat input"
+          />
+          <button id="chat-send" type="button">Send</button>
+          <button id="chat-reset" type="button" class="ghost">Start over</button>
+        </div>
+        <div class="chat-assist">
+          <div class="field">
+            <label for="chat-state-input">State (searchable)</label>
+            <input id="chat-state-input" list="chat-states-list" placeholder="Type to search state" />
+            <datalist id="chat-states-list"></datalist>
+          </div>
+          <div class="field">
+            <label for="chat-district-input">District (searchable)</label>
+            <input
+              id="chat-district-input"
+              list="chat-districts-list"
+              placeholder="Type to search district"
+              disabled
+            />
+            <datalist id="chat-districts-list"></datalist>
+          </div>
+          <div class="field">
+            <label for="chat-block-input">Block / Assessment Unit (searchable)</label>
+            <input
+              id="chat-block-input"
+              list="chat-blocks-list"
+              placeholder="Type to search block"
+              disabled
+            />
+            <datalist id="chat-blocks-list"></datalist>
+          </div>
+          <div class="assist-actions">
+            <button id="chat-apply" type="button">Use in chat</button>
+            <p id="chat-assist-error" class="error-text" role="alert"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Quick Mode</h2>
+          <span class="tag">API driven</span>
+        </div>
+        <form id="quick-form" class="grid-form" novalidate>
+          <div class="field">
+            <label for="state-select">State</label>
+            <select id="state-select" name="state">
+              <option value="">Select a state</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="district-select">District</label>
+            <select id="district-select" name="district" disabled>
+              <option value="">Select a district</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="block-select">Block / Assessment Unit</label>
+            <select id="block-select" name="block" disabled>
+              <option value="">Select a block</option>
+            </select>
+          </div>
+
+          <div class="field field-years">
+            <label>Years</label>
+            <div class="checkboxes">
+              <label>
+                <input type="checkbox" name="years" value="2023" />
+                2023
+              </label>
+              <label>
+                <input type="checkbox" name="years" value="2024" />
+                2024
+              </label>
+              <p class="hint">Select none to use the latest year.</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="get-data" type="submit">Get Data</button>
+            <p id="form-error" class="error-text" role="alert"></p>
+          </div>
+        </form>
+
+        <div id="results" class="results">
+          <p class="muted">Results will appear here.</p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/quickMode.js"></script>
+    <script type="module" src="./js/chatMode.js"></script>
+    <script type="module" src="./js/complexMode.js"></script>
+
+    <div id="complex-modal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="complex-title">
+        <div class="modal-header">
+          <h3 id="complex-title">Complex Queries (Coming Soon)</h3>
+          <button id="complex-close" class="ghost" type="button">Close</button>
+        </div>
+        <p class="muted">
+          In the future, you'll be able to ask natural language questions like “Compare groundwater
+          extraction in Rajasthan and Gujarat in 2023 and 2024” and get answers. For now, please use
+          Chat Mode or Quick Mode.
+        </p>
+      </div>
+    </div>
+  </body>
+ </html>
