@@ -134,23 +134,6 @@ body {
   align-self: flex-end;
 }
 
-.chat-assist {
-  margin-top: 4px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-.assist-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
 .tag {
   padding: 4px 10px;
